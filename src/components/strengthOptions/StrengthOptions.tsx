@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 
-function StrengthOptions() {
+import { PasswordParameters } from './../../App.type';
+
+type StrengthOptionsProps = {
+    getData: (param: PasswordParameters) => void;
+};
+
+function StrengthOptions({ getData }: StrengthOptionsProps) {
     const [buttonDisabled, setButtonDisabled] = useState<undefined | boolean>(
         undefined
     );
-    const [rangeNr, setRangeNr] = useState('10');
+    const [rangeNr, setRangeNr] = useState(10);
     const [checkboxesChecked, setCheckboxesChecked] = useState({
         uppercase: false,
         lowercase: false,
@@ -14,12 +20,12 @@ function StrengthOptions() {
 
     const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log({ passwordLength: rangeNr, options: checkboxesChecked });
+        const data = { passwordLength: rangeNr, options: checkboxesChecked };
+        getData(data);
     };
 
     const changeRangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
-        setRangeNr(e.target.value);
+        setRangeNr(e.target.valueAsNumber);
     };
 
     const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

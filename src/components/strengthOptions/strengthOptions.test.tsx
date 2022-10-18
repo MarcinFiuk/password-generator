@@ -2,21 +2,23 @@ import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import StrengthOptions from './strengthOptions';
 
+const MockFunc = jest.fn();
+
 describe('strength options', () => {
     test('input type range renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const rangeInput = screen.getByRole('slider');
         expect(rangeInput).toBeInTheDocument();
     });
 
     test('input type range renders correct value', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const rangeInput = screen.getByRole('slider');
         expect(rangeInput).toHaveValue('10');
     });
 
     test('input type checkbox (upper case) renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxUppercase = screen.getByRole('checkbox', {
             name: /include uppercase letters/i,
         });
@@ -24,7 +26,7 @@ describe('strength options', () => {
     });
 
     test('input type checkbox (lower case) renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxLowercase = screen.getByRole('checkbox', {
             name: /include lowercase letters/i,
         });
@@ -32,7 +34,7 @@ describe('strength options', () => {
     });
 
     test('input type checkbox (numbers) renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxNumbers = screen.getByRole('checkbox', {
             name: /include numbers/i,
         });
@@ -40,7 +42,7 @@ describe('strength options', () => {
     });
 
     test('input type checkbox (symbols) renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxSymbols = screen.getByRole('checkbox', {
             name: /include symbols/i,
         });
@@ -48,7 +50,7 @@ describe('strength options', () => {
     });
 
     test('submit button renders correctly', () => {
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const submitButton = screen.getByRole('button');
         expect(submitButton).toBeInTheDocument();
         expect(submitButton).toBeDisabled();
@@ -58,7 +60,7 @@ describe('strength options', () => {
 describe('click interaction', () => {
     test('checkbox uppercase checked after clicking one time', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxUppercase = screen.getByRole('checkbox', {
             name: /include uppercase letters/i,
         });
@@ -68,7 +70,7 @@ describe('click interaction', () => {
 
     test('checkbox uppercase unchecked after clicking two times', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxUppercase = screen.getByRole('checkbox', {
             name: /include uppercase letters/i,
         });
@@ -79,7 +81,7 @@ describe('click interaction', () => {
 
     test('checkbox lowercase checked after clicking one time', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxLowercase = screen.getByRole('checkbox', {
             name: /include lowercase letters/i,
         });
@@ -89,7 +91,7 @@ describe('click interaction', () => {
 
     test('checkbox lowercase unchecked after clicking two times', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxLowercase = screen.getByRole('checkbox', {
             name: /include lowercase letters/i,
         });
@@ -100,7 +102,7 @@ describe('click interaction', () => {
 
     test('checkbox numbers checked after clicking one time', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxNumbers = screen.getByRole('checkbox', {
             name: /include numbers/i,
         });
@@ -110,7 +112,7 @@ describe('click interaction', () => {
 
     test('checkbox numbers unchecked after clicking two times', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxNumbers = screen.getByRole('checkbox', {
             name: /include numbers/i,
         });
@@ -121,7 +123,7 @@ describe('click interaction', () => {
 
     test('checkbox symbols checked after clicking one time', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxSymbols = screen.getByRole('checkbox', {
             name: /include symbols/i,
         });
@@ -131,7 +133,7 @@ describe('click interaction', () => {
 
     test('checkbox symbols unchecked after clicking two times', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxSymbols = screen.getByRole('checkbox', {
             name: /include symbols/i,
         });
@@ -142,7 +144,7 @@ describe('click interaction', () => {
 
     test('enabled button checking uppercase', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxUppercase = screen.getByRole('checkbox', {
             name: /include uppercase letters/i,
         });
@@ -153,7 +155,7 @@ describe('click interaction', () => {
 
     test('enabled button checking lowercase', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxLowercase = screen.getByRole('checkbox', {
             name: /include lowercase letters/i,
         });
@@ -164,7 +166,7 @@ describe('click interaction', () => {
 
     test('enabled button checking numbers', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxNumbers = screen.getByRole('checkbox', {
             name: /include numbers/i,
         });
@@ -174,7 +176,7 @@ describe('click interaction', () => {
     });
     test('enabled button checking symbols', async () => {
         user.setup();
-        render(<StrengthOptions />);
+        render(<StrengthOptions getData={MockFunc} />);
         const checkboxSymbols = screen.getByRole('checkbox', {
             name: /include symbols/i,
         });
