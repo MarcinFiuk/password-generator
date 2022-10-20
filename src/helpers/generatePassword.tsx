@@ -1,7 +1,7 @@
-import { PasswordParameters } from './../App.type';
-import { optionsType } from '../App.type';
+import { PasswordParameters } from '../App.type';
+import { OptionsType } from '../App.type';
 
-const generateArr = (options: optionsType) => {
+const generateArr = (options: OptionsType) => {
     const charactersArr: string[] = [];
 
     if (options.uppercase) {
@@ -46,4 +46,16 @@ export const generatePassword = (params: PasswordParameters) => {
         password += charArr[randomIndex];
     }
     return password;
+};
+
+export const generatePasswordStrength = (options: OptionsType) => {
+    const valuesArr = Object.values(options);
+    const passwordStrength = valuesArr.reduce((acc, curr) => {
+        if (curr) {
+            acc++;
+        }
+        return acc;
+    }, 0);
+
+    return passwordStrength;
 };

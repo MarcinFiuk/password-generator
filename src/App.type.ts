@@ -1,4 +1,4 @@
-export type optionsType = {
+export type OptionsType = {
     uppercase: boolean;
     lowercase: boolean;
     numbers: boolean;
@@ -7,5 +7,5 @@ export type optionsType = {
 
 export type PasswordParameters = {
     passwordLength: number;
-    options: optionsType;
+    options: OptionsType;
 };

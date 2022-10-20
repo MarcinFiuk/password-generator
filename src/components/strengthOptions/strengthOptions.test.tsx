@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import StrengthOptions from './strengthOptions';
+import StrengthOptions from './StrengthOptions';
 
 const MockFunc = jest.fn();
 

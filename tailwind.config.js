@@ -18,6 +18,15 @@ module.exports = {
                 clrNeutral800: 'hsl(248 10% 15%)',
                 clrNeutral900: 'hsl(248 15% 11%)',
             },
+            width: {
+                95: '95%',
+            },
+            maxWidth: {
+                540: '34rem',
+            },
+            gridTemplateColumns: {
+                custom2: '1em auto',
+            },
         },
     },
     plugins: [],

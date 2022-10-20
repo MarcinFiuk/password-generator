@@ -4,7 +4,13 @@ import PasswordOutput from './PasswordOutput';
 describe('password output', () => {
     test('paragraph renders correctly', () => {
         render(<PasswordOutput password={'1234567890'} />);
-        const paragraphElement = screen.getByRole('paragraph');
+        const paragraphElement = screen.getByText('1234567890');
         expect(paragraphElement).toBeInTheDocument();
+    });
+
+    test('button renders correctly', () => {
+        render(<PasswordOutput password={'1234567890'} />);
+        const buttonElement = screen.getByRole('button', { name: 'C' });
+        expect(buttonElement).toBeInTheDocument();
     });
 });
