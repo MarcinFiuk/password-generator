@@ -4,6 +4,7 @@ import { PasswordParameters } from '../../App.type';
 import { ReactComponent as ArrowIcon } from './../../assets/icon-arrow-right.svg';
 import { generatePasswordStrength } from '../../helpers/generatePassword';
 import StrengthBar from './../strengthBar/StrengthBar';
+import Checkbox from '../checkbox/Chexkbox';
 
 type StrengthOptionsProps = {
     getData: (param: PasswordParameters) => void;
@@ -79,71 +80,39 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
                         onChange={changeRangeHandler}
                     />
                 </div>
-                {/* //nextstep: DRY the code - checkboxes look the same so create single component   */}
-                <div className='grid grid-cols-custom2 items-center'>
-                    <input
-                        type='checkbox'
-                        id='uppercase'
-                        name='uppercase'
-                        checked={checkboxesChecked.uppercase}
-                        onChange={checkboxHandler}
-                    />
-                    <label
-                        htmlFor='uppercase'
-                        className='ml-5 md:ml-6 md:text-lg'
-                    >
-                        Include Uppercase Letters
-                    </label>
-                </div>
-                <div className='grid grid-cols-custom2 items-center mt-4 md:mt-5'>
-                    <input
-                        type='checkbox'
-                        id='lowercase'
-                        name='lowercase'
-                        checked={checkboxesChecked.lowercase}
-                        onChange={checkboxHandler}
-                    />
-                    <label
-                        htmlFor='lowercase'
-                        className='ml-5 md:ml-6 md:text-lg'
-                    >
-                        Include Lowercase Letters
-                    </label>
-                </div>
-                <div className='grid grid-cols-custom2 items-center mt-4 md:mt-5'>
-                    <input
-                        type='checkbox'
-                        id='numbers'
-                        name='numbers'
-                        checked={checkboxesChecked.numbers}
-                        onChange={checkboxHandler}
-                    />
-                    <label
-                        htmlFor='numbers'
-                        className='ml-5 md:ml-6 md:text-lg'
-                    >
-                        Include Numbers
-                    </label>
-                </div>
-                <div className='grid grid-cols-custom2 items-center mt-4 md:mt-5'>
-                    <input
-                        type='checkbox'
-                        id='symbols'
-                        checked={checkboxesChecked.symbols}
-                        onChange={checkboxHandler}
-                    />
-                    <label
-                        htmlFor='symbols'
-                        className='ml-5 md:ml-6 md:text-lg'
-                    >
-                        Include Symbols
-                    </label>
-                </div>
+                <Checkbox
+                    name='uppercase'
+                    checked={checkboxesChecked.uppercase}
+                    onChange={checkboxHandler}
+                >
+                    Include Uppercase Letters
+                </Checkbox>
+                <Checkbox
+                    name='lowercase'
+                    checked={checkboxesChecked.lowercase}
+                    onChange={checkboxHandler}
+                >
+                    Include Lowercase Letters
+                </Checkbox>
+                <Checkbox
+                    name='numbers'
+                    checked={checkboxesChecked.numbers}
+                    onChange={checkboxHandler}
+                >
+                    Include Numbers
+                </Checkbox>
+                <Checkbox
+                    name='symbols'
+                    checked={checkboxesChecked.symbols}
+                    onChange={checkboxHandler}
+                >
+                    Include Symbols
+                </Checkbox>
                 <StrengthBar strength={passwordStrength} />
                 <button
                     type='submit'
                     disabled={buttonDisabled}
-                    className='flex gap-4 md:gap-6 justify-center items-center w-full bg-clrPrimary400 text-clrNeutral900 py-5 mt-4 md:mt-8 text-base md:text-lg'
+                    className='flex gap-4 md:gap-6 justify-center items-center w-full bg-clrPrimary400 hover:bg-clrNeutral900 border-2 border-clrPrimary400 text-clrNeutral900 hover:text-clrPrimary400 py-5 mt-4 md:mt-8 text-base md:text-lg duration-150'
                 >
                     GENERATE
                     <span className='self-center -translate-y-px'>

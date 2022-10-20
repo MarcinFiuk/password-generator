@@ -3,7 +3,6 @@ type StrengthBarProps = {
 };
 
 function StrengthBar({ strength }: StrengthBarProps) {
-    console.log(strength);
     let first;
     let second;
     let third;
