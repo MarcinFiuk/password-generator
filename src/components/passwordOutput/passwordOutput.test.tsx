@@ -10,7 +10,7 @@ describe('password output', () => {
 
     test('button renders correctly', () => {
         render(<PasswordOutput password={'1234567890'} />);
-        const buttonElement = screen.getByRole('button', { name: 'C' });
+        const buttonElement = screen.getByRole('button');
         expect(buttonElement).toBeInTheDocument();
     });
 });

@@ -37,11 +37,11 @@ function StrengthBar({ strength }: StrengthBarProps) {
 
     return (
         <div className='flex justify-between text-center mt-8 p-4 bg-clrNeutral900'>
-            <p className='text-base text-clrAccent300 leading-7'>STRENGTH</p>
+            <h2 className='text-base text-clrAccent300 leading-7'>STRENGTH</h2>
             <div className='flex gap-4'>
                 <p className='text-lg text-clrNeutral100 '>{quality}</p>
                 <div className='flex gap-2'>
-                    <div className={first}></div>
+                    <div className={first} data-testid='first'></div>
                     <div className={second}></div>
                     <div className={third}></div>
                     <div className={fourth}></div>

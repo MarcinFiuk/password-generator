@@ -1,5 +1,5 @@
-import { PasswordParameters } from '../App.type';
-import { OptionsType } from '../App.type';
+import { PasswordParameters } from '../App.types';
+import { OptionsType } from '../App.types';
 
 const generateArr = (options: OptionsType) => {
     const charactersArr: string[] = [];

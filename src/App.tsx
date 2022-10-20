@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { PasswordParameters } from './App.type';
-import { generatePassword } from './helpers/generatePassword';
+import { PasswordParameters } from './App.types';
+import { generatePassword } from './helpers/generatePassword.helpers';
 import PasswordOutput from './components/passwordOutput/PasswordOutput';
 import StrengthOptions from './components/strengthOptions/StrengthOptions';
 

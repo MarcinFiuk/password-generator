@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { PasswordParameters } from '../../App.type';
+import { PasswordParameters } from '../../App.types';
 import { ReactComponent as ArrowIcon } from './../../assets/icon-arrow-right.svg';
-import { generatePasswordStrength } from '../../helpers/generatePassword';
+import { generatePasswordStrength } from '../../helpers/generatePassword.helpers';
 import StrengthBar from './../strengthBar/StrengthBar';
 import Checkbox from '../checkbox/Chexkbox';
 
