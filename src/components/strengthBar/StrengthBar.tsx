@@ -37,7 +37,9 @@ function StrengthBar({ strength }: StrengthBarProps) {
 
     return (
         <div className='flex justify-between text-center mt-8 p-4 bg-clrNeutral900'>
-            <h2 className='text-base text-clrAccent300 leading-7'>STRENGTH</h2>
+            <h2 className='text-base md:text-lg text-clrAccent300 leading-7'>
+                STRENGTH
+            </h2>
             <div className='flex gap-4'>
                 <p className='text-lg text-clrNeutral100 '>{quality}</p>
                 <div className='flex gap-2'>

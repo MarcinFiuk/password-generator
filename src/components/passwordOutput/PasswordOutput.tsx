@@ -32,6 +32,7 @@ function PasswordOutput({ password }: PasswordOutputProps) {
                     onClick={copyHandler}
                     className='text-clrPrimary400 hover:text-white'
                     disabled={password ? false : true}
+                    aria-label='copy'
                 >
                     <CopyIcon />
                 </button>
