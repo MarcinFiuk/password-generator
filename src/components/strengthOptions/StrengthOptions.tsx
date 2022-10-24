@@ -5,6 +5,7 @@ import { ReactComponent as ArrowIcon } from './../../assets/icon-arrow-right.svg
 import { generatePasswordStrength } from '../../helpers/generatePassword.helpers';
 import StrengthBar from './../strengthBar/StrengthBar';
 import Checkbox from '../checkbox/Chexkbox';
+import { updateRangeGradient } from '../../helpers/rangeHelpers';
 
 type StrengthOptionsProps = {
     getData: (param: PasswordParameters) => void;
@@ -30,7 +31,9 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
     };
 
     const changeRangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setRangeNr(e.target.valueAsNumber);
+        const value = e.target.valueAsNumber;
+        setRangeNr(value);
+        updateRangeGradient(e.target.min, e.target.max, value);
     };
 
     const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
