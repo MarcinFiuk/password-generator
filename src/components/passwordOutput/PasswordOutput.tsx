@@ -21,11 +21,15 @@ function PasswordOutput({ password }: PasswordOutputProps) {
         }
     };
     return (
+        //
         <div className='flex justify-between p-4 md:px-8 md:py-5 bg-clrNeutral800 text-2xl md:text-3xl'>
             {!password && <p className='text-clrAccent300'>P4$5W0rD!</p>}
             {password && <p data-testid='password'>{password}</p>}
             <div className='flex text-center'>
-                <span className='self-center text-clrPrimary400 text-base md:text-lg mr-4'>
+                <span
+                    className='self-center text-clrPrimary400 text-base md:text-lg mr-4'
+                    data-testid='confirmation'
+                >
                     {confirmation}
                 </span>
                 <button

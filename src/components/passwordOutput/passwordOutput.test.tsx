@@ -1,5 +1,7 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import event from '@testing-library/user-event';
+import { resolve } from 'path';
+import { act } from 'react-dom/test-utils';
 import PasswordOutput from './PasswordOutput';
 
 describe('password output', () => {
@@ -44,12 +46,24 @@ describe('password output', () => {
         expect(buttonElement).toBeEnabled();
     });
 
-    test('text informing about copy appear on the screen', async () => {
-        event.setup();
+    test('text informing about copy before, after click and 2s later', async () => {
         render(<PasswordOutput password={'1234567890'} />);
+
+        const ev = event.setup({ advanceTimers: jest.advanceTimersByTime });
+        jest.useFakeTimers();
+
         const copyButton = screen.getByRole('button');
-        await event.click(copyButton);
-        const copyConfirmation = screen.getByText(/copied/i);
-        expect(copyConfirmation).toBeInTheDocument();
+        const copyConfirmation = screen.getByTestId(/confirmation/i);
+
+        expect(copyConfirmation).toBeEmptyDOMElement();
+
+        await ev.click(copyButton);
+        expect(copyConfirmation).toHaveTextContent(/copied/i);
+
+        act(() => {
+            jest.runAllTimers();
+        });
+        expect(copyConfirmation).toBeEmptyDOMElement();
+        jest.useRealTimers();
     });
 });
