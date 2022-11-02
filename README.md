@@ -27,5 +27,6 @@ I learnt a few new concepts:
 
 ## Author
 
+-   LinkedIn - [Marcin Fiuk](pomodoro-screenshot.png)
 -   Frontend Mentor - [@MarcinFiuk](https://www.frontendmentor.io/profile/MarcinFiuk)
 -   Twitter - [@marcin_fiuk](https://twitter.com/marcin_fiuk)
