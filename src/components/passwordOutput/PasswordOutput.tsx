@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ReactComponent as CopyIcon } from './../../assets/icon-copy.svg';
 
 type PasswordOutputProps = {
-    password: null | string;
+    password: string | null;
 };
 
 function PasswordOutput({ password }: PasswordOutputProps) {

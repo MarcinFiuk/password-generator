@@ -5,7 +5,9 @@ export type OptionsType = {
     symbols: boolean;
 };
 
+export type PasswordLength = number;
+
 export type PasswordParameters = {
-    passwordLength: number;
+    passwordLength: PasswordLength;
     options: OptionsType;
 };

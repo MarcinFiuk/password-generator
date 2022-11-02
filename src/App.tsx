@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
 import { PasswordParameters } from './App.types';
-import { generatePassword } from './helpers/generatePassword.helpers';
+import {
+    generatePassword,
+    generateArr,
+} from './helpers/generatePassword.helpers';
 import PasswordOutput from './components/passwordOutput/PasswordOutput';
 import StrengthOptions from './components/strengthOptions/StrengthOptions';
 
@@ -10,13 +13,15 @@ function App() {
     const [passwordParameters, setPasswordParameters] =
         useState<PasswordParameters | null>(null);
 
-    const getPasswordParameters = (param: PasswordParameters) => {
-        setPasswordParameters(param);
+    const getPasswordParameters = (parameters: PasswordParameters) => {
+        setPasswordParameters(parameters);
     };
 
     useEffect(() => {
         if (passwordParameters) {
-            const newPassword = generatePassword(passwordParameters);
+            const { options, passwordLength } = passwordParameters;
+            const charArr = generateArr(options);
+            const newPassword = generatePassword(passwordLength, charArr);
             setPassword(newPassword);
         }
     }, [passwordParameters]);

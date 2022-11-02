@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import { PasswordParameters } from '../../App.types';
 import { ReactComponent as ArrowIcon } from './../../assets/icon-arrow-right.svg';
+import { PasswordParameters } from '../../App.types';
 import { generatePasswordStrength } from '../../helpers/generatePassword.helpers';
+import { updateGradient } from '../../helpers/rangeHelpers';
+import { disableButton } from './../../helpers/strengthOptions.helpers';
 import StrengthBar from './../strengthBar/StrengthBar';
-import Checkbox from '../checkbox/Chexkbox';
-import { updateRangeGradient } from '../../helpers/rangeHelpers';
+import Checkbox from '../checkbox/Checkbox';
 
 type StrengthOptionsProps = {
     getData: (param: PasswordParameters) => void;
 };
 
 function StrengthOptions({ getData }: StrengthOptionsProps) {
-    const [buttonDisabled, setButtonDisabled] = useState<undefined | boolean>(
-        undefined
-    );
     const [rangeNr, setRangeNr] = useState(10);
     const [checkboxesChecked, setCheckboxesChecked] = useState({
         uppercase: false,
@@ -22,7 +20,6 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
         numbers: false,
         symbols: false,
     });
-    const [passwordStrength, setPasswordStrength] = useState(0);
 
     const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -33,7 +30,10 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
     const changeRangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.valueAsNumber;
         setRangeNr(value);
-        updateRangeGradient(e.target.min, e.target.max, value);
+        document.documentElement.style.setProperty(
+            '--gradientBorder',
+            `${updateGradient(e.target.min, e.target.max, value)}%`
+        );
     };
 
     const checkboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,23 +44,6 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
             [key]: value,
         });
     };
-
-    useEffect(() => {
-        const disableButton = () => {
-            const checkboxesValArr = Object.values(checkboxesChecked);
-            const stateOfButton = checkboxesValArr.every(
-                (state) => state === false
-            );
-            setButtonDisabled(stateOfButton);
-        };
-
-        disableButton();
-    }, [checkboxesChecked]);
-
-    useEffect(() => {
-        const passwordStrength = generatePasswordStrength(checkboxesChecked);
-        setPasswordStrength(passwordStrength);
-    }, [checkboxesChecked]);
 
     return (
         <div className='bg-clrNeutral800 p-4 text-clrNeutral100 md:p-8 md:pt-6'>
@@ -111,10 +94,12 @@ function StrengthOptions({ getData }: StrengthOptionsProps) {
                 >
                     Include Symbols
                 </Checkbox>
-                <StrengthBar strength={passwordStrength} />
+                <StrengthBar
+                    strength={generatePasswordStrength(checkboxesChecked)}
+                />
                 <button
                     type='submit'
-                    disabled={buttonDisabled}
+                    disabled={disableButton(checkboxesChecked)}
                     className='flex gap-4 md:gap-6 justify-center items-center w-full bg-clrPrimary400 hover:bg-clrNeutral900 border-2 border-clrPrimary400 text-clrNeutral900 hover:text-clrPrimary400 py-5 mt-4 md:mt-8 text-base md:text-lg duration-150'
                 >
                     GENERATE

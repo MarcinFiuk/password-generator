@@ -1,8 +1,10 @@
 import { PasswordParameters } from '../App.types';
-import { OptionsType } from '../App.types';
+import { OptionsType, PasswordLength } from '../App.types';
 
-const generateArr = (options: OptionsType) => {
-    const charactersArr: string[] = [];
+type CharactersArrType = string[];
+
+export const generateArr = (options: OptionsType) => {
+    const charactersArr: CharactersArrType = [];
 
     if (options.uppercase) {
         const uppercase = Array.from(Array(26)).map((_, i) =>
@@ -38,10 +40,14 @@ const generateArr = (options: OptionsType) => {
     return charactersArr;
 };
 
-export const generatePassword = (params: PasswordParameters) => {
-    const charArr = generateArr(params.options);
+export const generatePassword = (
+    passwordLength: PasswordLength,
+    charArr: CharactersArrType
+) => {
+    //6 and 14 are min and max from input type range StrengthOptions.tsx
+    if (passwordLength < 6 || passwordLength > 14) return null;
     let password = '';
-    while (password.length < params.passwordLength) {
+    while (password.length < passwordLength) {
         const randomIndex = Math.floor(Math.random() * (charArr.length - 1));
         password += charArr[randomIndex];
     }
